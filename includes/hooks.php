@@ -34,7 +34,7 @@ function capitaine_table_of_contents( $post_id, $post, $update )  {
   // On initialise le html du sommaire
 	$summary = "<ul class='summary'>";
 
-  foreach( $html->find( 'h2, h3, h4' ) as $element ):
+  foreach( $html->find( 'h2, h3, h4' ) as $element ){
 
     $title = $element->innertext;
     if ( $title == "" ) { continue; }
@@ -44,20 +44,20 @@ function capitaine_table_of_contents( $post_id, $post, $update )  {
 
     // On ajoute id="mon-titre" à chaque titre
     $element->id = $slug;
-
-    // Pour éviter une boucle infinie, on désactive le hook
-    remove_action( 'save_post', 'capitaine_table_of_contents', 10, 3 );
-
-    // On met à jour le HTML de l'article
-    wp_update_post( array( 'ID' => $post_id, 'post_content' => $html ) );
-
-    // Réactiver le hook
-    add_action( 'save_post', 'capitaine_table_of_contents', 10, 3 );
   
-  // On ajoute une entrée au sommaire
-  $summary .= "<li><a href='#$slug'>$title</a></li>";
+    // On ajoute une entrée au sommaire
+    $summary .= "<li><a href='#$slug'>$title</a></li>";
 
-  endforeach;
+  }
+
+  // Pour éviter une boucle infinie, on désactive le hook
+  remove_action( 'save_post', 'capitaine_table_of_contents', 10, 3 );
+
+  // On met à jour le HTML de l'article
+  wp_update_post( array( 'ID' => $post_id, 'post_content' => $html ) );
+
+  // Réactiver le hook
+  add_action( 'save_post', 'capitaine_table_of_contents', 10, 3 );
     
   // On referme le sommaire
 	$summary .= "</ul>";
