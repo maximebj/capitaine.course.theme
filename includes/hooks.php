@@ -30,7 +30,7 @@ function capitaine_table_of_contents( $post_id, $post, $update )  {
 
   // Étape 1 : création des ancres dans le contenu
 
-  // Recherche des titres dans le contenu
+  // Recherche des titres H2 à H4 dans le contenu
   $content = preg_replace_callback( 
     "/<h([2-4])(.*?)>(.*?)<\/h([2-4])>/i", // L'expression régulière
     function( $matches ) { // La fonction de remplacement
@@ -40,7 +40,7 @@ function capitaine_table_of_contents( $post_id, $post, $update )  {
 
       return "<h$level id='$slug'>$title</h$level>";
     }, 
-    $post->post_content
+    $post->post_content // Le contenu dans lequel faire la recherche
   );
 
   // Pour éviter une boucle infinie, on désactive le hook
