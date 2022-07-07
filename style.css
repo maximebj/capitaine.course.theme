@@ -470,6 +470,7 @@ h2, h3, h4 {
   color: white;
   border: none;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .comments {

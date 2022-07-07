@@ -62,13 +62,26 @@
 
       <?php endif; ?>
 
-      <?php //comments_template(); ?>
+      <?php 
+        // Commentaires version classique
+        // comments_template(); 
+      ?>
 
-      <?php // Commentaires Version Ajax ?>
+      <?php // Commentaires version Ajax ?>
       <h2>Il y a <?php comments_number(); ?></h2>
-      <button class="comments-load-button">Charger les commentaires</button>
-      <ol class="comments" data-post-id="<?php echo get_the_ID(); ?>"></ol>
       
+      <?php if( have_comments() ): ?>
+        
+        <form action="<?php echo admin_url( 'admin-ajax.php' ); ?>" method="post" class="js-load-comments">
+          <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+          <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('capitaine_load_comments'); ?>">
+          <input type="hidden" name="action" value="capitaine_load_comments">
+          <button class="comments-load-button">Charger les commentaires</button>
+        </form>
+        
+        <ol class="comments"></ol>
+
+      <?php endif; ?>   
     </div>
 
   <?php endwhile; endif; ?>
