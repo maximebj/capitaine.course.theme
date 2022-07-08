@@ -7,13 +7,14 @@
       // Empêcher l'envoi classique du formulaire
       e.preventDefault();
       
-      // L'URL qui réceptionne les requêtes Ajax
+      // L'URL qui réceptionne les requêtes Ajax dans l'attribut "action" de <form>
       const ajaxurl = $(this).attr('action');
       
       // Les données de notre formulaire
+      // ⚠️ Ne changez pas le nom "action" !
       const data = {
-        action: $(this).find('input[name=action]').val(), // Ne changez pas le nom "action" !
-        nonce: $(this).find('input[name=nonce]').val(),
+        action: $(this).find('input[name=action]').val(), 
+        nonce:  $(this).find('input[name=nonce]').val(),
         postId: $(this).find('input[name=postid]').val(),
       }
 
