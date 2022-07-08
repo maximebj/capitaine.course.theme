@@ -20,7 +20,7 @@ function capitaine_load_comments() {
 
   // Vérifier que l'article est publié, et public
   if( get_post_status( $post_id ) !== 'publish' ) {
-    wp_send_json_error( "Vous ne pouvez pas accéder aux commentaires de cet article.", 403 );
+    wp_send_json_error( "Vous n'avez pas accès aux commentaires de cet article.", 403 );
   }
 
   // Utilisez sanitize_text_field() pour une chaine de caractères.
