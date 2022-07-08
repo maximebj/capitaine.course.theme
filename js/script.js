@@ -15,7 +15,7 @@
       const data = {
         action: $(this).find('input[name=action]').val(), 
         nonce:  $(this).find('input[name=nonce]').val(),
-        postId: $(this).find('input[name=postid]').val(),
+        postid: $(this).find('input[name=postid]').val(),
       }
 
       // Pour vérifier qu'on a bien récupéré les données
