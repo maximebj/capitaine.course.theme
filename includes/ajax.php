@@ -11,12 +11,13 @@ function capitaine_load_comments() {
   }
 
   // On vérifie que l'identifiant a bien été envoyé
-  if( ! isset( $_POST['postid'] ) ) {
+  if( ! isset( $_POST['postId'] ) ) {
     wp_send_json_error( "L'identifiant de l'article est manquant." );
   }
 
   // Récupération des données du formulaire
   $post_id = intval( $_POST['postId'] );
+  var_dump($post_id); die;
 
   // Utilisez sanitize_text_field() pour une chaine de caractères.
   // exemple : $name = sanitize_text_field( $_POST['name'] );
