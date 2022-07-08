@@ -18,6 +18,11 @@ function capitaine_load_comments() {
   // Récupération des données du formulaire
   $post_id = intval( $_POST['postid'] );
 
+  // Vérifier que l'article est publié, et public
+  if( get_post_status( $post_id ) !== 'publish' ) {
+    wp_send_json_error( "Vous ne pouvez pas accéder aux commentaires de cet article." );
+  }
+
   // Utilisez sanitize_text_field() pour une chaine de caractères.
   // exemple : $name = sanitize_text_field( $_POST['name'] );
 
